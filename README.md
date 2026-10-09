@@ -1,53 +1,50 @@
-# entregavel_semana_5
 # Sistema de Validação de Dados em Python
 
-## 1. Descrição do Projeto
+## Descrição do Projeto
 
-Este projeto foi desenvolvido em Python com o objetivo de ler um arquivo CSV contendo informações de usuários, validar os dados utilizando expressões regulares (Regex), tratar possíveis erros e gerar um relatório final com os resultados.
+Este projeto tem como objetivo desenvolver um sistema de validação de dados utilizando Python. O programa realiza a leitura de arquivos CSV, verifica informações por meio de expressões regulares (Regex), trata possíveis exceções e gera um relatório com os resultados obtidos.
 
-O sistema verifica quatro informações: e-mail, CPF, telefone e data.
+Os dados analisados são e-mail, CPF, telefone e data.
 
-## 2. Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
-- **Python:** linguagem utilizada no desenvolvimento.
-- **CSV:** formato de arquivo utilizado para armazenar os dados.
-- **Módulo `csv`:** responsável pela leitura dos registros.
-- **Módulo `re`:** utilizado para validar os formatos por meio de expressões regulares.
-- **F-strings:** utilizadas para formatar a apresentação dos resultados.
+- **Python:** linguagem principal do projeto.
+- **CSV:** armazenamento e leitura dos registros.
+- **Regex (`re`):** validação dos formatos dos dados.
+- **Try/Except:** tratamento de erros durante a execução.
+- **F-strings:** formatação dos relatórios.
 
-## 3. Validações Aplicadas
+## Validações Aplicadas
 
-As validações foram criadas para identificar informações que não seguem os formatos esperados.
+As validações foram implementadas para verificar se os dados seguem os padrões estabelecidos.
 
-| Campo | Validação |
+| Campo | Critério de validação |
 |---|---|
-| E-mail | Verifica se possui nome, `@` e domínio. |
-| CPF | Verifica o formato `000.000.000-00`. |
-| Telefone | Verifica se possui 10 ou 11 dígitos. |
-| Data | Verifica o formato `DD/MM/AAAA`. |
+| E-mail | Presença de usuário, `@` e domínio válido em formato. |
+| CPF | Formato `000.000.000-00`. |
+| Telefone | Sequência de 10 ou 11 dígitos. |
+| Data | Formato `DD/MM/AAAA`. |
 
-As expressões regulares utilizam metacaracteres como `\d`, `\w`, `^` e `$` para identificar padrões.
+As expressões regulares utilizam metacaracteres como `\d`, `\w`, `^` e `$` para identificar os padrões.
 
-**Justificativa:** essas validações ajudam a evitar o processamento de dados com formatos incorretos, melhorando a organização e a confiabilidade dos registros.
+Essas verificações contribuem para identificar registros incorretos e melhorar a organização dos dados.
 
-**Limitação:** a validação verifica apenas o formato. Ela não confirma os dígitos verificadores do CPF nem se uma data existe no calendário.
+As validações são estruturais, não incluindo a verificação matemática do CPF ou a existência real das datas.
 
-## 4. Tratamento de Exceções
+## Tratamento de Exceções
 
-O programa utiliza `try`, `except`, `else` e `finally` para lidar com possíveis erros durante sua execução.
+Foram utilizados blocos `try`, `except`, `else` e `finally` para controlar possíveis falhas.
 
-- **FileNotFoundError:** ocorre quando o arquivo CSV não é encontrado.
-- **ValueError:** ocorre quando um valor não pode ser convertido para o tipo esperado.
-- **KeyError:** ocorre quando uma coluna necessária não existe no arquivo CSV.
-- **FormatoInvalidoError:** exceção personalizada utilizada para identificar informações que não atendem às regras de validação.
+- **FileNotFoundError:** arquivo de dados não encontrado.
+- **ValueError:** valor incompatível com uma conversão.
+- **KeyError:** coluna obrigatória ausente no CSV.
+- **FormatoInvalidoError:** exceção personalizada para dados que não atendem aos formatos exigidos.
 
-O bloco `else` executa quando não ocorre nenhuma exceção, enquanto o `finally` é executado independentemente do resultado.
+O tratamento dessas exceções permite identificar problemas e apresentar mensagens adequadas, evitando encerramentos inesperados nas situações previstas.
 
-Esses tratamentos permitem apresentar mensagens de erro mais claras e facilitar a identificação de problemas.
+## Exemplo de Entrada
 
-## 5. Exemplo de Entrada
-
-O programa utiliza um arquivo chamado `dados.csv`, com o seguinte conteúdo:
+Arquivo `dados.csv`:
 
 ```csv
 email,cpf,telefone,data
@@ -56,11 +53,7 @@ maria@gmail.com,987.654.321-00,85988887777,15/08/2002
 emailerrado,12345,123,50/15/2020
 ```
 
-O arquivo contém três registros, sendo dois com formatos válidos e um com informações inválidas.
-
-## 6. Exemplo de Saída
-
-Após a leitura e a validação, o sistema apresenta um relatório:
+## Exemplo de Saída
 
 ```text
 ========================================
@@ -72,6 +65,7 @@ Registros válidos: 2
 Registros inválidos: 1
 
 --- DADOS VÁLIDOS ---
+
 E-mail: joao@gmail.com
 CPF: 123.456.789-09
 Telefone: 85999998888
@@ -83,33 +77,30 @@ Telefone: 85988887777
 Data: 15/08/2002
 
 --- DADOS INVÁLIDOS ---
+
 E-mail: emailerrado
 CPF: 12345
 Telefone: 123
 Data: 50/15/2020
 
 Percentual de válidos: 66.67%
+
 ========================================
 ```
 
-## 7. Como Executar
+## Resultados
 
-1. Instale o Python no computador.
-2. Crie o arquivo `dados.csv` com as informações dos usuários.
-3. Coloque o arquivo CSV na mesma pasta do script Python.
-4. Abra o terminal nessa pasta.
-5. Execute o comando:
+A análise dos três registros demonstrou que:
 
-```bash
-python relatorio.py
-```
+- **3 registros** foram processados.
+- **2 registros** atenderam aos padrões estabelecidos.
+- **1 registro** apresentou informações inválidas.
+- **66,67%** dos registros passaram na validação de formato.
 
-O programa realizará a leitura, verificará os formatos e apresentará o relatório no terminal.
+O relatório permite visualizar os dados classificados e acompanhar as estatísticas da análise.
 
-Não é necessário instalar bibliotecas externas, pois os módulos `csv` e `re` já fazem parte do Python.
+## Conclusão
 
-## 8. Conclusão
+O projeto demonstra a aplicação prática de conceitos fundamentais de Python, como manipulação de arquivos, expressões regulares, tratamento de exceções e formatação de saídas.
 
-O desenvolvimento deste projeto permitiu aplicar conhecimentos de leitura de arquivos, expressões regulares, tratamento de exceções e formatação de relatórios em Python.
-
-A utilização dessas funcionalidades ajuda a tornar o código mais organizado, facilita a identificação de erros e demonstra como automatizar a verificação de informações cadastradas.
+A implementação dessas funcionalidades contribui para a organização, a identificação de inconsistências e a automatização da análise de dados.
